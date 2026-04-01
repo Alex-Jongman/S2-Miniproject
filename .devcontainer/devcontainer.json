@@ -1,0 +1,45 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/java-postgres
+{
+	"name": "Java & PostgreSQL",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "app",
+	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+	"features": {
+		"ghcr.io/devcontainers/features/github-cli:1": {},
+		"ghcr.io/devcontainers/features/python:1": {},
+		"ghcr.io/stu-bell/devcontainer-features/node:0": {},
+		"ghcr.io/iambipinpaul/devcontainer-features/oh-my-posh:1": {}
+	},
+	// Configure tool-specific properties.
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"markdown-preview-enhanced.plantumlJarPath": "/opt/plantuml/plantuml.jar",
+				"markdown-preview-enhanced.imageMagickPath": "/usr/bin/convert"
+			},
+			"extensions": [
+				"redhat.vscode-community-server-connector",
+				"ms-azuretools.vscode-containers",
+				"shd101wyy.markdown-preview-enhanced",
+				"erralb.mermaid-js-erd-to-sql",
+				"pomdtr.excalidraw-editor",
+				"dineug.vuerd-vscode",
+				"al-rimi.tomcat"
+			]
+		}
+	},
+
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	// "features": {}
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// This can be used to network with other containers or with the host.
+	"forwardPorts": [5432, 5050],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	// "postCreateCommand": "java -version",
+
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"
+}
