@@ -1,0 +1,26 @@
+info:
+  name: loginRequestUser
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: http://localhost:8080/api/authentication
+  body:
+    type: json
+    data: '{"username": "Alex", "password": "Welkom123"}'
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        const body = res.getBody();
+        console.log('token sent: ' + body.JWT)
+        bru.setEnvVar("JWT_User", body.JWT);
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

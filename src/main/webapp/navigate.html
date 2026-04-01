@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="navigate.css" />
+
+    <title>HUfterling</title>
+
+    <script type="module" src="./src/navigation.js"></script>
+</head>
+<body>
+    <header>
+        <h1>De HUfterling</h1>
+    </header>
+    <footer>
+        <p>&copy; 2026 HU-S2.</p>
+    </footer>
+    <main>
+        <h2 class="location-title">locatie</h2>
+        <img id="location-image" src="" alt="locatie">
+        <nav>
+            <button id="north-west">&#8598;</button>
+            <button id="north">&#8593;</button>
+            <button id="north-east">&#8599;</button>
+            <button id="west">&#8592;</button>
+            <button id="center" disabled>X</button>
+            <button id="east">&#8594;</button>
+            <button id="south-west">&#8601;</button>
+            <button id="south">&#8595;</button>
+            <button id="south-east">&#8600;</button>
+        </nav>
+    </main>
+    <aside>
+        <h2>Route History</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Timestamp</th>
+                    <th>Coordinates</th>
+                    <th>Direction</th>
+                </tr>
+            </thead>
+            <tbody id="route-history">
+                <!-- Route history will be populated here -->
+            </tbody>
+        </table>
+
+        <template id="route-entry-template">
+            <tr>
+                <td class="timestamp"></td>
+                <td class="coordinates"></td>
+                <td class="direction"></td>
+            </tr>
+        </template>
+    </aside>
+</body>
+</html>

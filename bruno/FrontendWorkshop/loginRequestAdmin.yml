@@ -1,0 +1,26 @@
+info:
+  name: loginRequestAdmin
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: http://localhost:8080/api/authentication
+  body:
+    type: json
+    data: '{"username": "Jos", "password": "Welkom123"}'
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        const body = res.getBody();
+        console.log('token sent: ' + body.JWT)
+        bru.setEnvVar("JWT_Admin", body.JWT);
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
