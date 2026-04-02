@@ -46,9 +46,9 @@ public class MapApplication {
 
     private static List<User> createUsers() {
         ArrayList<User> users = new ArrayList<>();
-        users.add(new User("Alex", "Welkom123", "user"));
-        users.add(new User("Andre", "Welkom123", "user"));
-        users.add(new User("Jos", "Welkom123", "admin"));
+        users.add(new User("Alex", "Welkom123", "user", myHUMap));
+        users.add(new User("Andre", "Welkom123", "user", myHUMap));
+        users.add(new User("Jos", "Welkom123", "admin", myHUMap));
         return users;
     }
 

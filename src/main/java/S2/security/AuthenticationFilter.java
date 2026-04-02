@@ -18,6 +18,10 @@ public class AuthenticationFilter implements ContainerRequestFilter {
 
     @Override
     public void filter(ContainerRequestContext requestCtx){
+        if (requestCtx.getMethod().equalsIgnoreCase("OPTIONS")) {
+            return; // let CORS handle it
+        }
+
         boolean isSecure = requestCtx.getSecurityContext().isSecure(); //is https or similar used
         MySecurityContext msc = new MySecurityContext(null, null, isSecure); //treat user as guest unless otherwise proved
 

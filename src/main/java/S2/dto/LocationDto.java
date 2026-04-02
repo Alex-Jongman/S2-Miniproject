@@ -15,6 +15,10 @@ public class LocationDto {
         this.deelmatrix = deelmatrix;
     }
 
+    public static LocationDto getLocationDto(Location location, Map map){
+        return getLocationDto(location.getX(), location.getY(), map);
+    }
+
     public static LocationDto getLocationDto(int x, int y, Map map){
         Location location = map.getLocation(x, y);
         if (location != null) {
