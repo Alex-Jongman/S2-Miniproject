@@ -7,6 +7,24 @@ export class Navigation {
         this.mapData = null;
     }
 
+    /**
+     * Handles HTTP errors by redirecting to appropriate error pages based on status code.
+     * @param {Error} error - The error object containing status information.
+     * @returns {boolean} - Returns true if error was handled (redirected), false otherwise.
+     */
+    handleHttpError(error) {
+        if (error?.status === 401) {
+            window.location.href = './401.html';
+            return true;
+        } else if (error?.status === 403) {
+            window.location.href = './403.html';
+            return true;
+        } else {
+            window.location.href = './error.html';
+            return true;
+        }
+    }
+
     getCurrentPosition() {
         return mapService.getCurrentPosition()
             .then(position => {
@@ -14,7 +32,7 @@ export class Navigation {
             })
             .catch(error => {
                 console.error('Error fetching starting position:', error);
-                throw error;
+                this.handleHttpError(error);
             });
     }
 
@@ -30,10 +48,11 @@ export class Navigation {
                 })
                 .catch(error => {
                     console.error('Error fetching map data for current position:', error);
-                    throw error;
+                    this.handleHttpError(error);
                 });
         } catch (error) {
             console.error('Error in getMapDataForCurrentPosition:', error);
+            this.handleHttpError(error);
         }
     }
 
@@ -83,6 +102,7 @@ export class Navigation {
             })
             .catch(error => {
                 console.error('Error initializing navigation:', error);
+                this.handleHttpError(error);
             });
     }
 
@@ -100,6 +120,7 @@ export class Navigation {
             })
             .catch(error => {
                 console.error('Error setting current position:', error);
+                this.handleHttpError(error);
             });
     }
 
