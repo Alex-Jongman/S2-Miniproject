@@ -22,7 +22,7 @@ public class LocationDto {
     public static LocationDto getLocationDto(int x, int y, Map map){
         Location location = map.getLocation(x, y);
         if (location != null) {
-            LocationMetadata metadata = new LocationMetadata(location.getName(), location.getPhotoLocation());
+            LocationMetadata metadata = new LocationMetadata(location.getName(), location.getPhotoLocation(), location.isInteractable());
             return new LocationDto(x, y, metadata, map.calculateDeelMatrix(x, y));
         }
         return null;

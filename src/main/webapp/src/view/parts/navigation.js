@@ -61,6 +61,7 @@ export class Navigation {
         this.northButton = document.querySelector('#north');
         this.northEastButton = document.querySelector('#north-east');
         this.westButton = document.querySelector('#west');
+        this.centerButton = document.querySelector('#center');
         this.eastButton = document.querySelector('#east');
         this.southWestButton = document.querySelector('#south-west');
         this.southButton = document.querySelector('#south');
@@ -77,6 +78,7 @@ export class Navigation {
         this.northButton.addEventListener('click', () => this.navigate(-1, 0));
         this.northEastButton.addEventListener('click', () => this.navigate(-1, 1));
         this.westButton.addEventListener('click', () => this.navigate(0, -1));
+        this.centerButton.addEventListener('click', () => this.interact());
         this.eastButton.addEventListener('click', () => this.navigate(0, 1));
         this.southWestButton.addEventListener('click', () => this.navigate(1, -1));
         this.southButton.addEventListener('click', () => this.navigate(1, 0));
@@ -88,6 +90,7 @@ export class Navigation {
         this.northButton.removeEventListener('click', () => this.navigate(-1, 0));
         this.northEastButton.removeEventListener('click', () => this.navigate(-1, 1));
         this.westButton.removeEventListener('click', () => this.navigate(0, -1));
+        this.centerButton.removeEventListener('click', () => this.interact());
         this.eastButton.removeEventListener('click', () => this.navigate(0, 1));
         this.southWestButton.removeEventListener('click', () => this.navigate(1, -1));
         this.southButton.removeEventListener('click', () => this.navigate(1, 0));
@@ -124,6 +127,21 @@ export class Navigation {
             });
     }
 
+    interact() {
+        let message = `Interacting with the environment at (${this.currentPosition.x}, ${this.currentPosition.y})...`;
+        
+        if (this.currentPosition.x == 2 && this.currentPosition.y == 1) {
+            message = "Papier hier!!!";
+        }
+        if (this.currentPosition.x == 4 && this.currentPosition.y == 1) {
+            message = "Het is hier een gekkenhuis, mijn code werkt niet meer, help!!!";
+        }
+        if (this.currentPosition.x == 2 && this.currentPosition.y == 2) {
+            message = "Yuppie, een vlucht met de Pagode !";
+        }
+        alert(message);
+    }
+
     render() {
         // Debugging info
         console.log(`Rendering location at (${this.currentPosition.x}, ${this.currentPosition.y}) with map data:`, this.mapData);
@@ -142,6 +160,8 @@ export class Navigation {
         this.northButton.disabled = !this.mapData.deelmatrix[0][1];
         this.northEastButton.disabled = !this.mapData.deelmatrix[0][2];
         this.westButton.disabled = !this.mapData.deelmatrix[1][0];
+        // The center button should be enabled depending on the metadata interactable property.
+        this.centerButton.disabled = !this.mapData.metadata.interactable;
         this.eastButton.disabled = !this.mapData.deelmatrix[1][2];
         this.southWestButton.disabled = !this.mapData.deelmatrix[2][0];
         this.southButton.disabled = !this.mapData.deelmatrix[2][1];
