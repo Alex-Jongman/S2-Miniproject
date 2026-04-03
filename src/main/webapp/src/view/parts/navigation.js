@@ -7,27 +7,34 @@ export class Navigation {
         this.mapData = null;
     }
 
-    updateData() {
-        // initialize the location by fetching the current position and then the corresponding map data
-        mapService.getCurrentPosition()
+    getCurrentPosition() {
+        return mapService.getCurrentPosition()
             .then(position => {
                 this.currentPosition = position;
             })
-            .then(() => {
-                // currentPosition is now set, we can fetch the map data for that position
-                mapService.getMapData(this.currentPosition.y, this.currentPosition.x)
-                    .then((mapData) => {
-                        // mapData is now available, we can store it in this instance and render the view
-                        this.mapData = mapData;
-                        this.render();
-                    })
-                    .catch(error => {
-                        console.error('Error fetching map data:', error);
-                    });
-            })
             .catch(error => {
-                console.error('Error initializing location:', error);
+                console.error('Error fetching starting position:', error);
+                throw error;
             });
+    }
+
+    getMapDataForCurrentPosition() {
+        try {
+            if (!this.currentPosition) {
+                throw new Error('Current position is not set. Cannot fetch map data.');
+            }
+            mapService.getMapData(this.currentPosition.y, this.currentPosition.x)
+                .then(mapData => {
+                    this.mapData = mapData;
+                    this.render();
+                })
+                .catch(error => {
+                    console.error('Error fetching map data for current position:', error);
+                    throw error;
+                });
+        } catch (error) {
+            console.error('Error in getMapDataForCurrentPosition:', error);
+        }
     }
 
     initElements() {
@@ -70,7 +77,13 @@ export class Navigation {
 
     init() {
         this.initElements();
-        this.updateData();
+        this.getCurrentPosition()
+            .then(() => {
+                this.getMapDataForCurrentPosition();
+            })
+            .catch(error => {
+                console.error('Error initializing navigation:', error);
+            });
     }
 
     navigate(deltaY, deltaX) {
@@ -83,7 +96,7 @@ export class Navigation {
         // send new position to the backend to update the current position
         mapService.setCurrentPosition(this.currentPosition)
             .then((newPosition) => {
-                this.updateData(); // After successfully updating the position, fetch the new map data and render the view
+                this.getMapDataForCurrentPosition();
             })
             .catch(error => {
                 console.error('Error setting current position:', error);
