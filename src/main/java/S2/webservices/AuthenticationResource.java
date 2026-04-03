@@ -41,7 +41,8 @@ public class AuthenticationResource {
                 String token = createToken(user.getName(), user.getRole());
 
                 //because we want to return json and Jackson doesn't convert strings we need an Object
-                return Response.ok(Map.of("JWT", token)).build();
+                System.out.println("token created for user " + user.getName() + ": " + token);
+                return Response.ok().entity(Map.of("JWT", token)).build();
             } else
                 return Response.status(Response.Status.UNAUTHORIZED).build();
         } catch (Exception e) {

@@ -1,6 +1,6 @@
-import { backendService } from "../service/backend-service.js";
+import { mapService } from "../../service/map-service.js";
 
-export class Location {
+export class Navigation {
 
     constructor() {
         this.currentPosition = null;
@@ -9,13 +9,13 @@ export class Location {
 
     updateData() {
         // initialize the location by fetching the current position and then the corresponding map data
-        backendService.getCurrentPosition()
+        mapService.getCurrentPosition()
             .then(position => {
                 this.currentPosition = position;
             })
             .then(() => {
                 // currentPosition is now set, we can fetch the map data for that position
-                backendService.getMapData(this.currentPosition.y, this.currentPosition.x)
+                mapService.getMapData(this.currentPosition.y, this.currentPosition.x)
                     .then((mapData) => {
                         // mapData is now available, we can store it in this instance and render the view
                         this.mapData = mapData;
@@ -81,7 +81,10 @@ export class Location {
         this.currentPosition = { x: newX, y: newY };
         
         // send new position to the backend to update the current position
-        backendService.setCurrentPosition(this.currentPosition)
+        mapService.setCurrentPosition(this.currentPosition)
+            .then((newPosition) => {
+                this.updateData(); // After successfully updating the position, fetch the new map data and render the view
+            })
             .catch(error => {
                 console.error('Error setting current position:', error);
             });
