@@ -7,35 +7,43 @@
 
 header {
     grid-area: header;
-    background-color: #0000FF;
-    color: #FF0000;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    color: #ffffff;
     padding: 10px;
     text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 footer {
     grid-area: footer;
-    background-color: #a2a2a8;
-    color: #1e13b7;
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    color: #ecf0f1;
     padding: 10px;
     text-align: center;
     width: 100%;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.15);
 }
 
 main {
     grid-area: main;
-    background-color: chartreuse;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
     padding: 20px;
     text-align: center;
     display: grid;
     grid-template-rows: auto 1fr auto;
+    border-radius: 12px;
+    margin: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 main img {
-    max-width: 70rem;
-    height: auto;
-    padding: 2rem;
-    margin: auto;
+    max-width: 100%;
+    /* 60vh ensures the image takes up at most 60% of the viewport height, 
+       leaving room for the form and margins */
+    max-height: 60vh; 
+    object-fit: contain;
+    display: block;
+    margin: 0 auto; /* Centers the image if it's narrower than the container */
 }
 
 button {
@@ -43,10 +51,23 @@ button {
     padding: 1rem 2rem;
     font-size: 16px;
     cursor: pointer;
-    background-color: #007BFF;
+    background: linear-gradient(135deg, #007BFF 0%, #0056b3 100%);
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 123, 255, 0.3);
+}
+
+button:hover {
+    background: linear-gradient(135deg, #0056b3 0%, #004494 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 123, 255, 0.4);
+}
+
+button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 123, 255, 0.2);
 }
 
 form {
@@ -54,9 +75,18 @@ form {
 }
 
 input {
-    padding: 0.5rem;
+    padding: 0.75rem;
     font-size: 1rem;
     margin: 0.5rem;
+    border: 2px solid #dee2e6;
+    border-radius: 8px;
+    transition: border-color 0.3s ease;
+}
+
+input:focus {
+    outline: none;
+    border-color: #007BFF;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
 }
 
 body {
