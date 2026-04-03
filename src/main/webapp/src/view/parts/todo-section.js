@@ -41,17 +41,22 @@ export class TodoSection {
         // Render each todo item
         this.todos.forEach(todo => {
             const todoItem = this.todoItemTemplate.content.cloneNode(true);
+            const listItemElement = todoItem.querySelector('li');
             const checkboxElement = todoItem.querySelector('.location-checkbox');
             const labelElement = todoItem.querySelector('.location-label');
             const deleteButton = todoItem.querySelector('.delete-button');
 
             checkboxElement.addEventListener('change', () => {
                 todo.completed = checkboxElement.checked;
+                listItemElement.classList.toggle('completed', todo.completed);
+                labelElement.style.textDecoration = todo.completed ? 'line-through' : 'none';
             });
 
             checkboxElement.setAttribute('name', todo.id);
             checkboxElement.setAttribute('id', todo.id);
             checkboxElement.checked = todo.completed;
+            listItemElement.classList.toggle('completed', todo.completed);
+            labelElement.style.textDecoration = todo.completed ? 'line-through' : 'none';
 
             labelElement.textContent = todo.text;
             labelElement.setAttribute('for', todo.id);

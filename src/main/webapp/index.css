@@ -38,8 +38,8 @@ main {
 
 main img {
     max-width: 100%;
-    /* 60vh ensures the image takes up at most 60% of the viewport height, 
-       leaving room for the form and margins */
+    /* 80vh ensures the image takes up at most 80% of the viewport height, 
+       making it equal to the todo section size */
     max-height: 60vh; 
     object-fit: contain;
     display: block;
