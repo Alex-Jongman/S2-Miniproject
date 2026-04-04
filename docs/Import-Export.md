@@ -44,4 +44,33 @@ import './path/to/file.js';
 
 ## Parts
 
-Als we naar de User Interface kijken, zien we vaak vlakken of onderdelen. Elk van deze vlakken of onderdelen kunnen we zien als een "part" van onze applicatie. In onze applicatie hebben we bijvoorbeeld een navigatie onderdeel, een interactie onderdeel, en een lijstje met plekken die we willen bezoeken. Elk van deze onderdelen kunnen we implementeren in aparte JavaScript files in de `src/view/parts` map.
+Als we naar de User Interface kijken, zien we vaak features in de vorm van vlakken of onderdelen van de pagina. Elk van deze vlakken of onderdelen kunnen we zien als een "part" van onze applicatie. In onze applicatie hebben we bijvoorbeeld een navigatie onderdeel, een interactie onderdeel, en een lijstje met plekken die we willen bezoeken. Elk van deze onderdelen kunnen we implementeren in aparte JavaScript files in de `src/view/parts` map.
+
+Omdat we deze 'parts' in elk geval in de JS Pages files willen gebruiken, moeten we deze exporteren. We kunnen ervoor kiezen om een hele file te exporteren, maar het is vaak handiger om specifieke functies, klassen, of variabelen te exporteren die we in onze pages kunnen importeren.
+Om de import consistent te houden kiezen we ervoor om de export altijd aan het einde van de file te plaatsen. We kunnen deze export op verschillende manieren uitvoeren, afhankelijk van wat we willen exporteren.
+
+```javascript
+// Exporting specific functions, classes, or variables
+export { functionName, className, variableName };
+```
+
+## Services
+
+Om de presentatie van de data te scheiden, en omdat meerdere `parts` vaak gebruik maken van dezelfde data, kiezen we ervoor om onze de opslag en het ophalen van data te scheiden van de presentatie van de data. 
+We plaatsen deze data opslag en ophaal functionaliteit in aparte JavaScript files in de `src/services` map. Deze services kunnen vervolgens door onze `parts` geïmporteerd worden, zodat we een duidelijke scheiding hebben tussen de data laag en de presentatie laag van onze applicatie.
+
+De services zijn dus verantwoordelijk voor de opslag en het ophalen van data, maar niet voor de weergave ervan. De weergave van de data is de verantwoordelijkheid van de `parts`, die de services kunnen gebruiken om de benodigde data op te halen en deze vervolgens op een geschikte manier aan de gebruiker te presenteren.
+
+En om de services niet te complex te maken, kiezen we ervoor om elke service omtrent een specifieke feature te implementeren.
+In onze applicatie is dat een feature die te maken heeft met de kaart (`map-service.js`), die dus kan vertellen waar op de kaart een gebruiker zich bevind, dan wel informatie kan verstrekken omtrent een specifieke locatie op de kaart. 
+Daarnaast zouden we ook een service kunnen introduceren omtrent een gebruiker (`user-service.js`), die diensten aan zou kunnen bieden om een gebruiker in te loggen, of om informatie over een gebruiker op te slaan en op te halen.
+In onze applicatie hebben we dat echter uit didactische overwegingen niet gedaan, maar het zou wel beter zijn geweest om deze scheiding te maken, zodat we de complexiteit die nu in onze `login-form.js` part file zit, hadden kunnen verminderen.
+
+## Conclusie
+
+Met de opsplitsing van de frontend code in view en services, en de verdere opsplitsing van de view code in pages en parts, creëren we een duidelijke structuur voor onze codebase. Deze structuur maakt het gemakkelijker om de code te begrijpen, te onderhouden, en uit te breiden in de toekomst.
+Zodoende zouden we tot het volgende architectuur diagram kunnen komen:
+
+![Architectuur diagram](./assets/architecture.png)
+
+
