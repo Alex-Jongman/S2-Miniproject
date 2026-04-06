@@ -93,6 +93,19 @@ console.log(a == b); // true, omdat '5' wordt geconverteerd naar 5
 console.log(a === b); // false, omdat 5 (number) niet gelijk is aan '5' (string)
 ```
 
+Een andere vorm van het if statement die we in JavaScript vaak zien is de ternary operator, die een kortere syntax biedt voor eenvoudige if/else statements. Ook wel bekend als de elvis operator, omdat het lijkt op de haarstijl van Elvis Presley. De syntax is als volgt:
+`condition ? expressionIfTrue : expressionIfFalse;`
+
+En is JavaScript zou je hem dan als volgt kunnen gebruiken:
+
+```javascript
+const isError;
+...
+isError = false;
+...
+const errorMessage = isError ? 'An error occurred' : 'Operation successful';
+```
+
 Switch statements zijn een andere manier om control flow te beheren, vooral wanneer we meerdere voorwaarden hebben die we willen controleren. Ze kunnen vaak leesbaarder zijn dan een reeks van `if/else if` statements.
 
 ```javascript
