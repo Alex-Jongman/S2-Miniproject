@@ -1,8 +1,40 @@
 # Web Storage
 
-TODO: uitleggen dat in JavaScript bij een reload van de pagina alle variabelen en data in het geheugen verloren gaan, als ook dat we soms data van de ene pagina naar de andere willen meenemen, of data willen bewaren voor later gebruik, en dat we daarvoor gebruik kunnen maken van de Web Storage API.
+In JavaScript kunnen we data opslaan in variabelen, maar als we de pagina herladen, gaan al die data verloren, omdat ze alleen in het geheugen van de browser bestaan. We gebruiken derhalve de backend server om data op te slaan, maar soms willen we ook data lokaal aan de client-side (de frontend/browser) opslaan, bijvoorbeeld om data van de ene pagina naar de andere mee te nemen, of om data te bewaren voor later gebruik. 
 
-TODO: Verschillende Web Storage opties opsommen, zoals localStorage, sessionStorage, en cookies. Maar dat dit ouderwetse technieken zijn die een aantal nadelen hebben, zoals beperkte opslagcapaciteit. Browsers hebben echter een nieuwere API geïntroduceerd genaamd IndexedDB, die veel krachtiger is en meer mogelijkheden biedt voor het opslaan van data aan de client-side, maar dat deze ook complexer is om te gebruiken, en dat we in deze workshop vooral zullen focussen op localStorage, omdat dat de meest eenvoudige en meest gebruikte optie is voor het opslaan van data aan de client-side.
+De browser biedt hiervoor de Web Storage API, waarmee we data aan de client kant kunnen opslaan. Er zijn verschillende opties om data aan de client side op te slaan. De meest bekende en ook eenvoudigsten in het gebruik zijn cookies, localStorage en sessionStorage.
+
+## Cookies 
+
+Cookies is een oudste manier om data aan de client side op te slaan, en worden vaak gebruikt voor het opslaan van kleine stukjes data, zoals sessie-informatie of gebruikersvoorkeuren. Cookies hebben echter een aantal nadelen, zoals beperkte opslagcapaciteit (ongeveer 4KB per cookie), en dat ze automatisch worden meegestuurd bij elke HTTP request naar de server, wat kan leiden tot prestatieproblemen als er veel cookies zijn.
+
+Omdat cookies elke keer worden meegestuurd bij een HTTP request, kunnen ze ook een beveiligingsrisico vormen, omdat ze kunnen worden onderschept door kwaadwillenden als ze niet goed worden beveiligd.
+
+Daarnaast moeten gebruikers expliciet toestemming geven voor het gebruik van cookies (cookie wall), wat kan leiden tot een slechte gebruikerservaring als er te veel cookie pop-ups zijn.
+In deze workshop gaan we geen gebruik maken van cookies en zullen derhalve ook niet verder ingaan op de details en het gebruik van cookies.
+
+## localStorage en sessionStorage
+
+localStorage en sessionStorage zijn client side opslagopties die na de komst van de cookies zijn geïntroduceerd, en die een aantal voordelen bieden ten opzichte van cookies. Ze hebben een grotere opslagcapaciteit (ongeveer 5MB per domein), en ze worden niet automatisch meegestuurd bij HTTP requests, wat betekent dat ze geen prestatieproblemen veroorzaken zoals cookies dat kunnen doen.
+
+Beide opties bieden een eenvoudige API voor het opslaan, ophalen en verwijderen van data, en ze zijn gemakkelijk te gebruiken in JavaScript. Het belangrijkste verschil tussen localStorage en sessionStorage is dat localStorage data opslaat die persistent is, wat betekent dat de data blijft bestaan zelfs als de browser wordt gesloten, terwijl sessionStorage data opslaat die alleen beschikbaar is tijdens de sessie van de gebruiker, en die wordt verwijderd zodra de browser wordt gesloten.
+
+De keuze tussen localStorage en sessionStorage hangt af van de specifieke behoeften van je applicatie. Als je data wilt opslaan die persistent moet zijn, zoals gebruikersinstellingen, dan is localStorage de beste optie. Als je data wilt opslaan die alleen relevant is tijdens de sessie van de gebruiker, zoals de actuele GPS-locatie of een sessie-id, dan is sessionStorage de betere keuze.
+
+Bij het JWT token kunnen we bijvoorbeeld kiezen voor localStorage, omdat we willen dat het token persistent is en beschikbaar blijft, zelfs als de gebruiker de pagina herlaadt of de browser sluit en opnieuw opent. Aan de andere kant, zouden we een bank applicatie maken dan zou je uit veiligheidsoverwegingen beter kunnen kiezen om de JWT token in sessionStorage op te slaan, omdat dat betekent dat het token automatisch wordt verwijderd zodra de gebruiker de browser sluit, wat een extra beveiligingslaag toevoegt in het geval dat iemand anders toegang krijgt tot de computer van de gebruiker.
+
+local- en sessionStorage kennen beiden dezelfde eenvoudige API, die bestaat uit de volgende methoden:
+
+- `setItem(key, value)`: Hiermee kun je een item opslaan in de storage. De `key` is een string die fungeert als de naam van het item, en de `value` is de data die je wilt opslaan, ook als string.
+- `getItem(key)`: Hiermee kun je een item ophalen uit de storage. Je geeft de `key` op van het item dat je wilt ophalen, en het retourneert de bijbehorende `value` als een string. Als het item niet bestaat, retourneert het `null`.
+- `removeItem(key)`: Hiermee kun je een item verwijderen uit de storage. Je geeft de `key` op van het item dat je wilt verwijderen, en het wordt verwijderd uit de storage.
+- `clear()`: Hiermee kun je alle items verwijderen uit de storage. Dit verwijdert alle items die zijn opgeslagen in de storage, en maakt het leeg.
+- `key(index)`: Hiermee kun je de `key` van een item ophalen op basis van de index. Je geeft een `index` op, en het retourneert de `key` van het item op die index. De index is gebaseerd op de volgorde waarin items zijn toegevoegd aan de storage.
+- `length`: Dit is een eigenschap die het aantal items in de storage retourneert. Het geeft aan hoeveel items er momenteel zijn opgeslagen in de storage.
+
+De data die we opslaan in localStorage of sessionStorage moet altijd een string zijn. Als we een ander type data willen opslaan, zoals een object of een array, moeten we die eerst omzetten naar een string, bijvoorbeeld door gebruik te maken van `JSON.stringify()`, en als we die data weer willen ophalen, moeten we die weer omzetten naar het oorspronkelijke type, bijvoorbeeld door gebruik te maken van `JSON.parse()`.
+
+In onze applicatie gebruiken we de localStorage API om het JWT token op te slaan dat we ontvangen van de backend na een succesvolle login, zodat we dat token kunnen gebruiken voor authenticatie bij toekomstige requests naar de backend, en zodat we ook kunnen controleren of een gebruiker is ingelogd of niet door te checken of er een geldig token aanwezig is in localStorage.
 
 ```javascript
     fetch('./api/authentication', {
@@ -34,7 +66,12 @@ TODO: Verschillende Web Storage opties opsommen, zoals localStorage, sessionStor
     });
 ```
 
-TODO: Laten zien dat we in onze login-form.js gebruik maken van de localStorage API, en dat we het resultaat in de Dev Tools terug kunnen zien in de Application tab, onder Local Storage. En dat we daar ook data kunnen verwijderen of aanpassen, en dat dat effect heeft op onze applicatie, omdat we die data gebruiken om te bepalen of een gebruiker is ingelogd of niet, en welke plekken er al bezocht zijn. En dat we ook kunnen checken wat er gebeurt als we de pagina herladen, en dat we dan nog steeds die data hebben, omdat het is opgeslagen in localStorage, en dat dat anders zou zijn als we die data alleen in een variabele hadden opgeslagen, omdat die dan verloren zou gaan bij een reload van de pagina.
+Dat we data in de localstorage hebben staan kun je in de Dev Tools van je browser terugzien, onder de Application tab, in het gedeelte Local Storage. Daar kun je ook data verwijderen of aanpassen, en dat heeft direct effect op je applicatie.
+
+![Local Storage in Dev Tools](./assets/localstorage.png)
+
+Het uitlezen van de data uit localStorage hebben we in onze applicatie in de MapService class ondergebracht. Dit omdat het werken met de localstorage en/of sessionStorage een taak en verantwoordelijkheid van de service zou moeten zijn en niet zoals in de `login-form.js` code een taak van de `view` laag.
+Dit omdat er anders een zogenaamde **tight coupling** ontstaat tussen de `login-form.js` en de manier waarop we de JWT token opslaan, omdat we in de `login-form.js` direct gebruik maken van `localStorage.getItem('jwtToken')`, en dat betekent dat als we ooit zouden willen switchen naar een andere manier van opslaan, zoals bijvoorbeeld IndexedDB, of dat we de key van onze JWT token zouden willen wijzigen, dat we dan ook onze `login-form.js` moeten aanpassen, omdat die direct afhankelijk is van de manier waarop we de JWT token opslaan. Door het gebruik van een service class die verantwoordelijk is voor het opslaan en ophalen van de JWT token, kunnen we deze afhankelijkheid verminderen en een **loose coupling** creëren, omdat we dan de manier waarop we de JWT token opslaan en ophalen kunnen abstraheren, en dat we dan in de toekomst makkelijk kunnen switchen naar een andere opslagmethode als dat nodig is, zonder dat we overal in onze code aanpassingen hoeven te maken. We zouden bijvoorbeeld een `AuthService` class kunnen maken die verantwoordelijk is voor het opslaan en ophalen van de JWT token, en dat we die class dan kunnen gebruiken in zowel de `login-form.js` als de `navigate.js`, zodat we daar geen directe afhankelijkheid meer hebben van `localStorage`, en dat we die in de toekomst makkelijk kunnen vervangen door bijvoorbeeld IndexedDB of een andere opslagmethode als dat nodig is.
 
 ```javascript
 class MapService {
@@ -50,6 +87,10 @@ class MapService {
     }
 ```
 
-TODO: Laten zien dat we in onze navigate.js de data die de login-form heeft opgeslagen gebruiken. Doorgaan op de mogelijke issue die zou kunnen ontstaan als we nu besluiten om in de login-form de key een andere naam zouden willen geven. De consequentie is dat we nu ook in de MapService class die key zouden moeten aanpassen, anders werkt onze applicatie niet meer. Dit is een voorbeeld van **tight coupling**, en dat we dit kunnen voorkomen door gebruik te maken van een constante voor die key, zodat we die op één plek kunnen aanpassen als dat nodig is, en dat we dan ook meteen de naam van die key duidelijk maken, omdat het dan een constante is met een duidelijke naam, in plaats van een string literal die overal in onze code voorkomt.
-Gebruik van een service class die verantwoordelijk is voor de JWT token zou beter zijn en een **loose coupling** creëren, omdat we dan de manier waarop we de JWT token opslaan en ophalen kunnen abstraheren, en dat we dan in de toekomst makkelijk kunnen switchen naar een andere opslagmethode als dat nodig is, zonder dat we overal in onze code aanpassingen hoeven te maken. We zouden bijvoorbeeld een AuthService class kunnen maken die verantwoordelijk is voor het opslaan en ophalen van de JWT token, en dat we die class dan kunnen gebruiken in zowel de login-form als de navigate.js, zodat we daar geen directe afhankelijkheid meer hebben van localStorage, en dat we die in de toekomst makkelijk kunnen vervangen door bijvoorbeeld IndexedDB of een andere opslagmethode als dat nodig is.
+## Cache en IndexedDB
 
+Zoals eerder aangegeven zijn er inmiddels ook andere opties in de browser om data op te slaan, zoals Cache API en IndexedDB, die meer geavanceerde mogelijkheden bieden voor het opslaan van grotere hoeveelheden data, zoals afbeeldingen, bestanden of gestructureerde data. Deze opties zijn echter complexer in het gebruik dan localStorage en sessionStorage, en vereisen meer kennis van JavaScript en de browser API's om ze effectief te kunnen gebruiken. In deze workshop zullen we ons daarom richten op localStorage en sessionStorage, omdat die eenvoudiger zijn in het gebruik en voldoende functionaliteit bieden voor de behoeften van onze applicatie.
+
+---
+
+[:arrow_left: JS - Promises & Fetch](./Fetch-Promises.md) | [:house: README](./README.md) | [Ontwerp - Datastructuur en REST API design :arrow_right:](./Data-Structure-Design.md)
