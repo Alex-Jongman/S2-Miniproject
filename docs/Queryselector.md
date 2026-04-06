@@ -36,6 +36,8 @@ Om dit te kunnen doen, moeten we deze elementen eerst selecteren in onze JavaScr
 
 De modernere en krachtigere manier om elementen te selecteren is door gebruik te maken van de [`querySelector`](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector) en [`querySelectorAll`](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll) methoden. Deze methoden maken gebruik van CSS selectors, waardoor we veel flexibeler kunnen zijn in het selecteren van elementen, alsook dat we zo een consistente manier hebben om elementen te selecteren, ongeacht of we nu een element willen selecteren op basis van zijn id, class, tag, of een combinatie daarvan.
 
+De `querySelector` is een methode die we kunnen aanroepen vanuit een specifiek element, of vanuit het `document` object. Het `document` object is de representatie van de hele HTML pagina in de browser, en door de `querySelector` aan te roepen vanuit het `document` object kunnen we elementen selecteren uit de hele pagina. 
+
 We zouden dus de afbeelding van de kassa op basis van zijn class kunnen selecteren, gezien er maar één element met deze class op de pagina staat:
 
 ```javascript
