@@ -139,4 +139,4 @@ Dit maakt Grid een zeer krachtige tool voor het maken van complexe layouts.
 
 ---
 
-[:arrow_left: Semantische HTML](./Semantische_html.md) | [:house: README](./README.md) | [CSS - Grid :arrow_right:](./Grid.md)
+[:arrow_left: Semantische HTML](./Semantische_html.md) | [:house: README](./README.md) | [HTML - Forms :arrow_right:](./Forms.md)
