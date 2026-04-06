@@ -1,4 +1,4 @@
-# Grid
+# CSS - Grid
 
 Als we goed naar de HTML van onze startpagina kijken, dan valt op dat de `<footer>` boven de `<main>` staat, terwijl we die in onze visuele weergave juist onder de `<main>` zouden verwachten. Dit komt omdat de volgorde van elementen in de HTML niet per se overeen hoeft te komen met de volgorde van elementen in de visuele weergave.
 
@@ -136,3 +136,7 @@ Wees je ervan bewust dat je ook grids binnen grids kunt maken, waardoor je niet 
 
 Samen met de `@media` of `@container` query kunnen we ook verschillende grid layouts maken voor verschillende schermgroottes of container groottes om zo een **responsive design** (layout voor verschillende devices) realiseren. 
 Dit maakt Grid een zeer krachtige tool voor het maken van complexe layouts.
+
+---
+
+[:arrow_left: Semantische HTML](./Semantische_html.md) | [:house: README](./README.md) | [CSS - Grid :arrow_right:](./Grid.md)
