@@ -121,4 +121,4 @@ Om de frontend niet nog complexer te maken hebben we ervoor gekozen om al deze d
 
 ---
 
-[:arrow_left: JS - Web Storage](./Web-Storage.md) | [:house: README](./README.md) | [JS - Classes :arrow_right:](./JS-Class.md)
+[:arrow_left: JS - Web Storage](./Web-Storage.md) | [:house: README](./README.md) | [JS - Object-Oriented Programming :arrow_right:](./JS-OOP.md)

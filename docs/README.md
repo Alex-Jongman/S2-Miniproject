@@ -28,7 +28,7 @@ Aan de hand van deze technieken zou jij je eigen frontend van je miniproject moe
 - [[JS] REST Fetch API en Promises](./Fetch-Promises.md)
 - [[JS] Web Storage API](./Web-Storage.md)
 - [[Ontwerp] Datastructuur en REST API design](./Data-Structure-Design.md)
-- [[JS] Klassen en OOP](./JS-Class.md)
+- [[JS] OOP](./JS-Class.md)
 - [[JS] Try/Catch](./Try-Catch.md)
 - [[JS] DOM Manipulatie](./DOM-Manipulation.md)
 - [[JS] Arrays en bewerkingen daarop](./Arrays.md)

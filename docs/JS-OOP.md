@@ -1,4 +1,4 @@
-# JavaScript Classes
+# JavaScript Object-Oriented Programming (OOP)
 
 Van origine had JavaScript geen klassen, maar werden er functies gebruikt om objecten te maken en te organiseren. In ES6 (ECMAScript 2015) zijn classes geïntroduceerd als syntactische suiker bovenop het bestaande prototype-gebaseerde systeem van JavaScript. Klassen bieden een meer traditionele en gestructureerde manier om objecten te definiëren en te organiseren, vergelijkbaar met andere objectgeoriënteerde programmeertalen zoals Java of C++.
 
