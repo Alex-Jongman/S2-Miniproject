@@ -1,4 +1,4 @@
-# Semantische HTML
+# HTML - Semantische HTML
 
 Semantische HTML is het gebruik van HTML-elementen die de betekenis van de inhoud duidelijk maken, zowel voor ontwikkelaars als voor browsers en assistieve technologieën. Het helpt bij het verbeteren van de toegankelijkheid (Accessibility), Search Engine Optimization (SEO) en onderhoudbaarheid van webpagina's.
 
