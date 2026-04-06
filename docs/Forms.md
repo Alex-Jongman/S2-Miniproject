@@ -1,4 +1,4 @@
-# Forms
+# HTML - Forms
 
 Een belangrijk onderdeel van veel websites zijn formulieren. Formulieren stellen gebruikers in staat om informatie in te voeren en te verzenden, wat essentieel is voor interactie en functionaliteit op het web. 
 
@@ -34,4 +34,8 @@ De `<input>` elementen hebben verschillende `type` attributen. Het eerste `<inpu
 >
 > Naast deze inputs zijn er nog veel andere soorten formulierelementen die we kunnen gebruiken, zoals [`<select>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/select) voor dropdown-menu's, [`<textarea>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/textarea) voor meerregelige tekstinvoer, en verschillende soorten [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/input) elementen zoals checkboxes, radio buttons, en meer.
 
-Het laatste element in ons formulier is een `<button>` element met een `type` van "submit". Dit betekent dat wanneer de gebruiker op deze knop klikt, het formulier wordt verzonden. Standaard zal het verzenden van een formulier resulteren in een pagina herladen, maar we zullen dit gedrag in onze JavaScript code gaan onderdrukken.
+Het laatste element in ons formulier is een `<button>` element met een `type` van "submit". Dit betekent dat wanneer de gebruiker op deze knop klikt, het formulier wordt verzonden. Standaard zal het verzenden van een formulier resulteren in een pagina herladen, maar we zullen dit gedrag in onze JavaScript code gaan onderbinden.
+
+---
+
+[:arrow_left: CSS- Grid](./Grid.md) | [:house: README](./README.md) | [JS - Basics :arrow_right:](./JS-Basics.md)
