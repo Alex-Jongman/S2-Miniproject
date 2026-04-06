@@ -1,6 +1,10 @@
-# Import & Export / File structuur
+# JS - Import & Export / File structuur
 
-Doordat we in onze HTML de JavaScript met het attribuut `type="module"` hebben gemarkeerd, kunnen we gebruik maken van de moderne JavaScript functionaliteiten voor het importeren en exporteren van code tussen verschillende bestanden. Dit stelt ons in staat om onze code op te splitsen in kleinere, beter beheersbare stukken, wat de leesbaarheid en onderhoudbaarheid van onze codebase aanzienlijk verbetert.
+We zouden al onze frontend code in een enkele JavaScript file kunnen plaatsen, maar dat zou al snel onoverzichtelijk worden. Door onze code op te splitsen in verschillende bestanden kunnen we logische groepen van functionaliteit creëren en deze gemakkelijk terugvinden.
+Dit vereist echter dat we een manier hebben om code van het ene bestand naar het andere te verplaatsen, zodat we functionaliteit die in het ene bestand is gedefinieerd kunnen gebruiken in een ander bestand. Dit kunnen we bereiken door gebruik te maken van de moderne JavaScript functionaliteiten voor het importeren en exporteren van code tussen verschillende bestanden, namelijk `import` en `export`.
+
+Om van `import` en `export` gebruik te kunnen maken, moeten we ervoor zorgen dat onze JavaScript bestanden worden behandeld als modules. Dit doen we door in onze HTML de JavaScript te importeren met het attribuut `type="module"`. Hierdoor kunnen we gebruik maken van de module functionaliteiten van JavaScript, waaronder het importeren en exporteren van code tussen verschillende bestanden.
+Indien we dit niet doen, zullen we in de browser een foutmelding krijgen wanneer we proberen om `import` of `export` te gebruiken in onze JavaScript bestanden, omdat deze functionaliteiten alleen beschikbaar zijn in modules.
 
 ```html
 ...
@@ -8,7 +12,9 @@ Doordat we in onze HTML de JavaScript met het attribuut `type="module"` hebben g
  ...
  ```
 
-We zouden ook alles in een enkele JavaScript file kunnen plaatsen, maar dat zou al snel onoverzichtelijk worden. Door onze code op te splitsen in verschillende bestanden kunnen we logische groepen van functionaliteit creëren en deze gemakkelijk terugvinden.
+Deze aanpak maakt ook dat we in principe slechts één JavaScript bestand per HTML pagina nodig hebben, omdat we vanuit dat ene JavaScript bestand alle benodigde functionaliteit kunnen importeren vanuit andere JavaScript bestanden. Dit betekent dat we onze code kunnen organiseren in een logische structuur van modules, waarbij we specifieke functionaliteiten in aparte bestanden kunnen plaatsen en deze vervolgens kunnen importeren in de JavaScript file van de pagina waar ze nodig zijn.
+
+Dat we slechts één JavaScript file per HTML pagina importeren heeft ook als voordeel dat we een duidelijke scheiding hebben tussen de verschillende pagina's van onze applicatie, en dat we gemakkelijk kunnen zien welke functionaliteit bij welke pagina hoort. Dit maakt het ook gemakkelijker om onze code te onderhouden en uit te breiden in de toekomst, omdat we niet hoeven te zoeken naar specifieke functionaliteit in een grote centrale JavaScript file, maar deze kunnen vinden in de specifieke JavaScript file van de pagina waar deze functionaliteit wordt gebruikt.
 
 Voor de opsplitsing van onze frontend code bestaan er geen vaste regels, maar een handige aanpak is om een mappenstructuur te creëren die de verschillende onderdelen van onze applicatie logisch groepeert. Waarbij we voor nu adviseren om de volgende mappenstructuur voor de frontend code aan te houden:
 
@@ -39,8 +45,7 @@ import './path/to/file.js';
 
 > [!NOTE]
 > 
-> Elke pagina kent een eigen JavaScript file die we met de ending `-page.js` aanduiden. Elke page JavaScript file importeert vervolgens minimaal één part JavaScript file. 
-
+> Er zijn geen regels voor de filenames van JavaScript files, maar het is handig om een consistente naamgevingsconventie te gebruiken. In onze applicatie kiezen we ervoor om de JavaScript files van de pagina's te laten eindigen op `-page.js`, zodat we gemakkelijk kunnen zien welke JavaScript file bij welke HTML pagina hoort. Deze [kebab-case](https://www.freecodecamp.org/news/snake-case-vs-camel-case-vs-pascal-case-vs-kebab-case-whats-the-difference/) naamgevingsconventie is een veelgebruikte stijl in JavaScript, en komt in volgende semesters ook goed van pas wanneer we met web components gaan werken, waar de naam van de component ook in kebab-case moet zijn.
 
 ## Parts
 
@@ -73,4 +78,6 @@ Zodoende zouden we tot het volgende architectuur diagram kunnen komen:
 
 ![Architectuur diagram](./assets/architecture.png)
 
+---
 
+[:arrow_left: JS - Basics](./JS-Basics.md) | [:house: README](./README.md) | [JS - QuerySelector :arrow_right:](./Queryselector.md)
