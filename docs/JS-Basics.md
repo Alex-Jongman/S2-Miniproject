@@ -167,5 +167,6 @@ greet('Dave'); // "Hello, Dave!"
 >
 > JavaScript is een taal die zowel Object-Oriented Programming (OOP) als Functioneel Programmeren (FP) ondersteunt. In OOP noemen we functies vaak "methodes" wanneer ze deel uitmaken van een object, terwijl in FP functies worden behandeld als first-class citizens, wat betekent dat ze kunnen worden toegewezen aan variabelen, doorgegeven als argumenten aan andere functies, en zelfs kunnen worden geretourneerd door andere functies.
 
+---
 
 [:arrow_left: HTML - Forms](./Forms.md) | [:house: README](./README.md) | [JS - Import/Export & File Structure :arrow_right:](./Import-Export.md)
