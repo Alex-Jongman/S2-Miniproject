@@ -56,7 +56,6 @@ class MapService {
     }
 
     getMapData(y, x) {
-        // TODO: Needs to be ajusted to fetch the correct map data from the tomcat backend, due to issues with the json-server working with :id's.
         console.log(`Fetching map data ...`);
         return fetch(`${this.backendUrl}/${x}/${y}`, this.fetchOptions)
             .then((response) => this.handleResponse(response))
