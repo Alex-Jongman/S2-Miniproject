@@ -10,9 +10,12 @@ Helaas zijn op onze kaart de attracties en servicepunten niet aangegeven, waardo
 
 Er zit echter een tijdslimiet aan onze wandeling, dus we moeten wel een beetje opschieten. Als we ons timeslot overschrijden, worden we vriendelijk verzocht het park te verlaten.
 
+Het omzetten van deze ervaring naar een online omgeving geeft ons de volgende sitemap:
+
 ![Sitemap](./assets/sitemap.png)
 
-Op basis van deze acties zullen we aan de hand van een uitgewerkte site een aantal frontend technieken gaan passeren:
+Het realiseren van deze sitemap vraagt om een aantal frontend technieken, die we in de volgende hoofdstukken zullen behandelen.
+Aan de hand van deze technieken zou jij je eigen frontend van je miniproject moeten kunnen realizeren, of in ieder geval een goede start kunnen maken.
 
 - [[HTML] Semantische HTML](./Semantische_html.md)
 - [[CSS] Grid](./Grid.md)
